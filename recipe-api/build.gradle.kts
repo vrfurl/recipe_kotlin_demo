@@ -28,14 +28,18 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+
     runtimeOnly("com.h2database:h2")
+    compileOnly("io.github.serpro69:kotlin-faker:1.10.0")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test"){
         exclude(module = "junit")
         exclude(module = "mockito-core")
     }
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("com.ninja-squad:springmockk:3.0.1")
+    testImplementation("com.ninja-squad:springmockk:3.1.0")
     testImplementation("io.github.serpro69:kotlin-faker:1.10.0")
 }
 
