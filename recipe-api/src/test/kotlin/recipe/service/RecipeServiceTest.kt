@@ -1,7 +1,6 @@
 package recipe.service
 
 import com.ninjasquad.springmockk.MockkBean
-import factories.buildRecipe
 import io.mockk.every
 import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import recipe.repository.RecipeRepository
+import recipe.test.factories.buildRecipe
 
 @SpringBootTest
 class RecipeServiceTest(
@@ -39,13 +39,13 @@ class RecipeServiceTest(
 
         // Given
         val recipe = buildRecipe()
-        every { recipeRepository.findByNameContaining(recipe.name) } returns listOf(recipe)
+        every { recipeRepository.findByNameContainingAllIgnoreCase(recipe.name) } returns listOf(recipe)
 
         //When
         val result = recipeService.searchRecipeByName(recipe.name)
 
         // Then
-        verify(exactly = 1) { recipeRepository.findByNameContaining(recipe.name) }
+        verify(exactly = 1) { recipeRepository.findByNameContainingAllIgnoreCase(recipe.name) }
         assertTrue(result.contains(recipe))
 
     }

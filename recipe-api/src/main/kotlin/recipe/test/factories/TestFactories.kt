@@ -1,10 +1,13 @@
-package factories
+package recipe.test.factories
 
 import io.github.serpro69.kfaker.faker
 import recipe.model.Ingredient
 import recipe.model.NutritionalInfo
 import recipe.model.Recipe
 import recipe.model.RecipeIngredient
+
+
+// TODO: Move this to a testFixtures directory directory once the 'java-test-fixtures' plugin becomes available in Kotlin (see: https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures)
 
 
 val faker = faker { }

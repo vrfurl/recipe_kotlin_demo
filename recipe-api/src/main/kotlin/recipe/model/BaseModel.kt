@@ -1,10 +1,12 @@
 package recipe.model
 
+import kotlinx.serialization.Serializable
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
+@Serializable
 open class BaseModel(
     @Id @GeneratedValue var id: Long? = null
 ) : java.io.Serializable {

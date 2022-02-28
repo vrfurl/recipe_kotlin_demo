@@ -1,11 +1,10 @@
 package recipe.repository
 
-import factories.buildRecipe
-
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import recipe.test.factories.buildRecipe
 
 
 @DataJpaTest
@@ -30,8 +29,8 @@ class RecipeRepositoryTest @Autowired constructor(
         val recipe = buildRecipe()
         val persistedRecipe = recipeRepository.save(recipe)
 
-        val exactNameResult = recipeRepository.findByNameContaining(recipe.name)
-        val partialNameResult = recipeRepository.findByNameContaining(recipe.name.dropLast(recipe.name.length - 1))
+        val exactNameResult = recipeRepository.findByNameContainingAllIgnoreCase(recipe.name)
+        val partialNameResult = recipeRepository.findByNameContainingAllIgnoreCase(recipe.name.dropLast(recipe.name.length - 1))
 
         assertTrue(exactNameResult.contains(persistedRecipe))
         assertTrue(partialNameResult.contains(persistedRecipe))

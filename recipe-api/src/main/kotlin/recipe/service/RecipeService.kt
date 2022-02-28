@@ -14,6 +14,6 @@ class RecipeService(
     }
 
     fun searchRecipeByName(name: String): List<Recipe> {
-        return recipeRepository.findByNameContaining(name)
+        return recipeRepository.findByNameContainingAllIgnoreCase(name)
     }
 }
